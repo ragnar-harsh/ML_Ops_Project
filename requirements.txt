@@ -5,5 +5,7 @@ mysql-connector-python
 pymysql
 scikit-learn
 dvc
+catboost
+xgboost
 
 # -e .
