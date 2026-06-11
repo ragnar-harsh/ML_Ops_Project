@@ -2,6 +2,7 @@
 # Manually Added
 logs/
 # artifacts/
+catboost_info/
 
 
 
