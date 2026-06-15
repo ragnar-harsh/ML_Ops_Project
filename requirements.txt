@@ -7,5 +7,7 @@ scikit-learn
 dvc
 catboost
 xgboost
+mlflow
+dagshub
 
 # -e .
