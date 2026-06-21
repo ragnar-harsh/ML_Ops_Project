@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>Student Exam Performance · Material UI</title>
+  <!-- Google Font & Material Icons (optional but adds flair) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(145deg, #f6f9fc 0%, #e9f0f8 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      margin: 0;
+    }
+
+    .login {
+      max-width: 720px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      background: #ffffff;
+      border-radius: 40px;
+      padding: 2.5rem 2.8rem;
+      box-shadow: 
+        0 20px 40px -12px rgba(0, 20, 30, 0.25),
+        0 8px 24px -6px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    @media (max-width: 500px) {
+      .login {
+        padding: 1.8rem 1.2rem;
+        border-radius: 28px;
+      }
+    }
+
+    .login h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #0b2b3d;
+      margin-bottom: 0.25rem;
+      background: linear-gradient(135deg, #0b2b3d 0%, #1b4a6b 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-block;
+    }
+
+    .login h1:first-of-type {
+      font-size: 2.1rem;
+      margin-bottom: 1.75rem;
+      display: block;
+      border-bottom: 3px solid rgba(25, 118, 210, 0.2);
+      padding-bottom: 0.6rem;
+      -webkit-text-fill-color: #0b2b3d;
+      background: none;
+      color: #0b2b3d;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    legend {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #1a3b4f;
+      margin-bottom: 1.4rem;
+      display: block;
+      letter-spacing: -0.01em;
+      border: none;
+      padding: 0;
+    }
+
+    form h1 {
+      margin-bottom: 0.5rem;
+    }
+
+    .mb-3 {
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    label.form-label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: #1e3a4f;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-bottom: 0.1rem;
+    }
+
+    .form-control, select.form-control, input.form-control {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      font-size: 1rem;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      background: #f2f7fc;
+      border: 1.5px solid #dce6ef;
+      border-radius: 20px;
+      transition: all 0.2s ease;
+      color: #0c2d41;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%233b5f7a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 1.2rem;
+      padding-right: 2.8rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    input.form-control[type="number"] {
+      background-image: none;
+      padding-right: 1rem;
+    }
+
+    .form-control:focus, input.form-control:focus, select.form-control:focus {
+      border-color: #1a73e8;
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.15), 0 4px 10px rgba(0, 20, 30, 0.05);
+      outline: none;
+    }
+
+    .form-control::placeholder {
+      color: #8aa1b5;
+      font-weight: 400;
+      opacity: 0.7;
+    }
+
+    select.form-control option {
+      font-weight: 400;
+      background: white;
+      color: #0c2d41;
+      padding: 0.6rem;
+    }
+
+    select.form-control option.placeholder {
+      color: #8aa1b5;
+    }
+
+    /* custom select arrow */
+    select.form-control:invalid {
+      color: #6b8aa0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 0.9rem 1.8rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      border: none;
+      border-radius: 60px;
+      background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
+      color: white;
+      box-shadow: 0 8px 20px -6px rgba(26, 115, 232, 0.4);
+      transition: all 0.25s ease;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+      margin-top: 0.6rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px -10px rgba(26, 115, 232, 0.5);
+      background: linear-gradient(135deg, #2b7cf0 0%, #0f4a9e 100%);
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+      box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #1a73e8, #0d47a1);
+    }
+
+    h2 {
+      margin-top: 2.2rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #0b2b3d;
+      background: #ecf3fa;
+      padding: 1rem 1.4rem;
+      border-radius: 40px;
+      text-align: center;
+      letter-spacing: -0.01em;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+      word-break: break-word;
+    }
+
+    h2 span {
+      background: linear-gradient(135deg, #0d47a1, #1a73e8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
+
+    h2:empty, h2:not(:has(*)) {
+      display: none;
+    }
+
+    /* responsive fine-tune */
+    @media (max-width: 480px) {
+      .login h1:first-of-type {
+        font-size: 1.6rem;
+      }
+      legend {
+        font-size: 1.3rem;
+      }
+      .form-control, select.form-control, input.form-control {
+        padding: 0.7rem 0.9rem;
+        font-size: 0.95rem;
+      }
+      .btn {
+        font-size: 1rem;
+        padding: 0.8rem 1.2rem;
+      }
+      h2 {
+        font-size: 1.2rem;
+        padding: 0.8rem 1rem;
+      }
+    }
+
+    /* extra tiny tweaks for very small screens */
+    @media (max-width: 380px) {
+      .login {
+        padding: 1.2rem 0.8rem;
+      }
+    }
+
+    /* remove spinners on number inputs */
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+
+    /* Material UI floating‑like labels + subtle elevation */
+    .mb-3:focus-within label {
+      opacity: 1;
+      color: #0d47a1;
+    }
+
+    /* disabled placeholder style */
+    option:disabled {
+      color: #a0b8cc;
+    }
+
+    /* minor spacing */
+    .login form {
+      margin-top: 0.2rem;
+    }
+
+    /* The prediction result styling */
+    .prediction-box {
+      background: #eef4fa;
+      border-radius: 32px;
+      padding: 0.2rem 0.2rem;
+    }
+
+    /* small icon hint */
+    .form-control[type="number"] {
+      background-color: #f2f7fc;
+    }
+
+    /* improve accessibility */
+    .form-control:focus-visible {
+      outline: 2px solid #1a73e8;
+      outline-offset: 2px;
+    }
+
+    .btn:focus-visible {
+      outline: 3px solid #1a73e8;
+      outline-offset: 3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login">
+    <h1>Student Exam Performance Indicator</h1>
+
+    <form action="{{ url_for('predict_datapoint') }}" method="post">
+      <legend>Student Exam Performance Prediction</legend>
+
+      <!-- Gender -->
+      <div class="mb-3">
+        <label class="form-label" for="gender">Gender</label>
+        <select class="form-control" id="gender" name="gender" required>
+          <option class="placeholder" selected disabled value="">Select your Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+
+      <!-- Ethnicity -->
+      <div class="mb-3">
+        <label class="form-label" for="ethnicity">Race or Ethnicity</label>
+        <select class="form-control" id="ethnicity" name="ethnicity" required>
+          <option class="placeholder" selected disabled value="">Select Ethnicity</option>
+          <option value="group A">Group A</option>
+          <option value="group B">Group B</option>
+          <option value="group C">Group C</option>
+          <option value="group D">Group D</option>
+          <option value="group E">Group E</option>
+        </select>
+      </div>
+
+      <!-- Parental Education -->
+      <div class="mb-3">
+        <label class="form-label" for="parental_level_education">Parental Level of Education</label>
+        <select class="form-control" id="parental_level_education" name="parental_level_education" required>
+          <option class="placeholder" selected disabled value="">Select Parent Education</option>
+          <option value="associate's degree">associate's degree</option>
+          <option value="bachelor's degree">bachelor's degree</option>
+          <option value="high school">high school</option>
+          <option value="master's degree">master's degree</option>
+          <option value="some college">some college</option>
+          <option value="some high school">some high school</option>
+        </select>
+      </div>
+
+      <!-- Lunch -->
+      <div class="mb-3">
+        <label class="form-label" for="lunch">Lunch Type</label>
+        <select class="form-control" id="lunch" name="lunch" required>
+          <option class="placeholder" selected disabled value="">Select Lunch Type</option>
+          <option value="free/reduced">free/reduced</option>
+          <option value="standard">standard</option>
+        </select>
+      </div>
+
+      <!-- Test prep -->
+      <div class="mb-3">
+        <label class="form-label" for="test_preparation_course">Test preparation Course</label>
+        <select class="form-control" id="test_preparation_course" name="test_preparation_course" required>
+          <option class="placeholder" selected disabled value="">Select Test_course</option>
+          <option value="none">None</option>
+          <option value="completed">Completed</option>
+        </select>
+      </div>
+
+      <!-- Writing Score -->
+      <div class="mb-3">
+        <label class="form-label" for="writing_score">Writing Score out of 100</label>
+        <input class="form-control" type="number" id="writing_score" name="reading_score"
+               placeholder="Enter your Reading score" min="0" max="100">
+      </div>
+
+      <!-- Reading Score -->
+      <div class="mb-3">
+        <label class="form-label" for="reading_score">Reading Score out of 100</label>
+        <input class="form-control" type="number" id="reading_score" name="writing_score"
+               placeholder="Enter your Reading Score" min="0" max="100">
+      </div>
+
+      <!-- Submit -->
+      <div class="mb-3">
+        <input class="btn btn-primary" type="submit" value="Predict your Maths Score" required>
+      </div>
+    </form>
+
+    <!-- Prediction Result -->
+    <h2>
+      Predicted Result is <span>{{ result }}</span>
+    </h2>
+  </div>
+</body>
+</html>

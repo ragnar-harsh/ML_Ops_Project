@@ -102,6 +102,14 @@ def save_object(file_path, obj):
     except Exception as e:
         raise CustomExceptions(e, sys)
 
+def load_object(file_path):
+    ''' Load Pickle Objects'''
+    try:
+        with open(file_path, 'rb') as file_obj:
+            return pickle.load(file_obj)
+    except Exception as e:
+        raise CustomExceptions(e, sys)
+
 
 
 def evaluate_model_accuracy(true_value, predicted):
