@@ -1,7 +1,3 @@
-# import sys 
-
-# from src.ML_Ops_Project.logger import logging
-# from src.ML_Ops_Project.exception import CustomExceptions
 from src.ML_Ops_Project.pipelines.prediction_pipeline import CustomData, PredictionPipeline
 
 
@@ -43,9 +39,6 @@ def predict_datapoint():
         )
 
         data_frame = data.get_data_as_data_frame()
-
-        print(data_frame)
-
         pred_pipeline = PredictionPipeline()
 
         results = pred_pipeline.predict(data_frame)
